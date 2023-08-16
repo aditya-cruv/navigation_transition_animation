@@ -23,13 +23,13 @@ class BestOfScreen extends StatelessWidget {
           // swipe down
           if (details.delta.dy > 6) {
             Navigator.of(context).push(VerticalSwipeNavigation(
-                widget: const SearchScreen(), swipeDirection: 'down'));
+                nextScreen: const SearchScreen(),currentScreen: this, swipeDirection: 'down'));
           }
 
           // swipe up
           if (details.delta.dy < -6) {
             Navigator.of(context).push(VerticalSwipeNavigation(
-                widget: const VideosScreen(), swipeDirection: 'up'));
+                nextScreen: const VideosScreen(),currentScreen: this, swipeDirection: 'up'));
           }
         },
         child: Container(

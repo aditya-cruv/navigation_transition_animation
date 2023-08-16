@@ -13,24 +13,25 @@ class OrdersScreen extends StatelessWidget {
         title: const Text('Orders Screen'),
       ),
       body: GestureDetector(
-        onVerticalDragUpdate: (details) {
-          // swipe down
-          if (details.delta.dy > 10) {
-            Navigator.of(context).push(VerticalSwipeNavigation(
-                widget: const SearchScreen(), swipeDirection: 'down'));
-          }
-
-          if (details.delta.dy < -6) {
-            Navigator.of(context).push(VerticalSwipeNavigation(
-                swipeDirection: 'up', widget: const OrderTrackingScreen()));
-          }
-        },
         onHorizontalDragUpdate: (details) {
           // swipe left
           if (details.delta.dx > -10) {
             Navigator.of(context).pop();
           }
         },
+        onVerticalDragUpdate: (details) {
+          // swipe down
+          if (details.delta.dy > 10) {
+            Navigator.of(context).push(VerticalSwipeNavigation(
+                nextScreen: const SearchScreen(),currentScreen: this, swipeDirection: 'down'));
+          }
+
+          if (details.delta.dy < -6) {
+            Navigator.of(context).push(VerticalSwipeNavigation(
+                swipeDirection: 'up', nextScreen: const OrderTrackingScreen(),currentScreen: this,));
+          }
+        },
+        
         child: Container(
           color: Colors.red,
         ),

@@ -10,33 +10,46 @@ class Profile extends StatelessWidget {
   const Profile({super.key});
 
   void swipeUp(BuildContext context) {
-    Navigator.of(context).push(
-        VerticalSwipeNavigation(widget: const Explore(), swipeDirection: 'up'));
+    Navigator.of(context).push(VerticalSwipeNavigation(
+        nextScreen: const Explore(),
+        currentScreen: this,
+        swipeDirection: 'up'));
   }
 
   void swipeDown(BuildContext context) {
     Navigator.of(context).push(
       VerticalSwipeNavigation(
-          widget: const SearchScreen(), swipeDirection: 'down'),
+          nextScreen: const SearchScreen(),
+          currentScreen: this,
+          swipeDirection: 'down'),
     );
   }
 
   void swipeLeft(BuildContext context) {
     Navigator.of(context).push(
       HorizontalSwipeNavigation(
-          widget: const BestOfScreen(), swipeDirection: 'left'),
+          nextScreen: const BestOfScreen(),
+          currentScreen: this,
+          swipeDirection: 'left'),
     );
   }
 
   void swipeRight(BuildContext context) {
     Navigator.of(context).push(
       HorizontalSwipeNavigation(
-          widget: const OrdersScreen(), swipeDirection: 'right'),
+          nextScreen: const OrdersScreen(),
+          currentScreen: this,
+          swipeDirection: 'right'),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    // final _screenWidth = MediaQuery.of(context).size.width;
+    // final _screenHeight = MediaQuery.of(context).size.height;
+    // print('widht : $_screenWidth');
+    // print('height : $_screenHeight');
+
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile Page'),
@@ -44,12 +57,12 @@ class Profile extends StatelessWidget {
       body: GestureDetector(
         onVerticalDragUpdate: (details) {
           // swipe up
-          if (details.delta.dy < -6) {
+          if (details.delta.dy < -10) {
             swipeUp(context);
           }
 
           // swipe down
-          if (details.delta.dy > 6) {
+          if (details.delta.dy > 10) {
             swipeDown(context);
           }
         },
