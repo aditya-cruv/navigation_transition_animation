@@ -1,6 +1,6 @@
+import 'package:animations/animations/navigation_transition.dart';
 import 'package:animations/screens/search.dart';
 import 'package:animations/screens/videos.dart';
-import 'package:animations/animations/vertical_swipe.dart';
 import 'package:flutter/material.dart';
 
 class BestOfScreen extends StatelessWidget {
@@ -22,14 +22,18 @@ class BestOfScreen extends StatelessWidget {
         onVerticalDragUpdate: (details) {
           // swipe down
           if (details.delta.dy > 6) {
-            Navigator.of(context).push(VerticalSwipeNavigation(
-                nextScreen: const SearchScreen(),currentScreen: this, swipeDirection: 'down'));
+            Navigator.of(context).push(NavigationTransition(
+                nextScreen: const SearchScreen(),
+                currentScreen: this,
+                swipeDirection: 'down'));
           }
 
           // swipe up
           if (details.delta.dy < -6) {
-            Navigator.of(context).push(VerticalSwipeNavigation(
-                nextScreen: const VideosScreen(),currentScreen: this, swipeDirection: 'up'));
+            Navigator.of(context).push(NavigationTransition(
+                nextScreen: const VideosScreen(),
+                currentScreen: this,
+                swipeDirection: 'up'));
           }
         },
         child: Container(

@@ -1,6 +1,6 @@
+import 'package:animations/animations/navigation_transition.dart';
 import 'package:animations/screens/order_tracking.dart';
 import 'package:animations/screens/search.dart';
-import 'package:animations/animations/vertical_swipe.dart';
 import 'package:flutter/material.dart';
 
 class OrdersScreen extends StatelessWidget {
@@ -22,16 +22,20 @@ class OrdersScreen extends StatelessWidget {
         onVerticalDragUpdate: (details) {
           // swipe down
           if (details.delta.dy > 10) {
-            Navigator.of(context).push(VerticalSwipeNavigation(
-                nextScreen: const SearchScreen(),currentScreen: this, swipeDirection: 'down'));
+            Navigator.of(context).push(NavigationTransition(
+                nextScreen: const SearchScreen(),
+                currentScreen: this,
+                swipeDirection: 'down'));
           }
 
           if (details.delta.dy < -6) {
-            Navigator.of(context).push(VerticalSwipeNavigation(
-                swipeDirection: 'up', nextScreen: const OrderTrackingScreen(),currentScreen: this,));
+            Navigator.of(context).push(NavigationTransition(
+              swipeDirection: 'up',
+              nextScreen: const OrderTrackingScreen(),
+              currentScreen: this,
+            ));
           }
         },
-        
         child: Container(
           color: Colors.red,
         ),

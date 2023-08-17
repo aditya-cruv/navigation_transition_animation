@@ -1,16 +1,15 @@
+import 'package:animations/animations/navigation_transition.dart';
 import 'package:animations/screens/explore.dart';
 import 'package:animations/screens/best_of.dart';
 import 'package:animations/screens/orders.dart';
 import 'package:animations/screens/search.dart';
-import 'package:animations/animations/vertical_swipe.dart';
-import 'package:animations/animations/horizontal_swipe.dart';
 import 'package:flutter/material.dart';
 
 class Profile extends StatelessWidget {
   const Profile({super.key});
 
   void swipeUp(BuildContext context) {
-    Navigator.of(context).push(VerticalSwipeNavigation(
+    Navigator.of(context).push(NavigationTransition(
         nextScreen: const Explore(),
         currentScreen: this,
         swipeDirection: 'up'));
@@ -18,7 +17,7 @@ class Profile extends StatelessWidget {
 
   void swipeDown(BuildContext context) {
     Navigator.of(context).push(
-      VerticalSwipeNavigation(
+      NavigationTransition(
           nextScreen: const SearchScreen(),
           currentScreen: this,
           swipeDirection: 'down'),
@@ -27,7 +26,7 @@ class Profile extends StatelessWidget {
 
   void swipeLeft(BuildContext context) {
     Navigator.of(context).push(
-      HorizontalSwipeNavigation(
+      NavigationTransition(
           nextScreen: const BestOfScreen(),
           currentScreen: this,
           swipeDirection: 'left'),
@@ -36,7 +35,7 @@ class Profile extends StatelessWidget {
 
   void swipeRight(BuildContext context) {
     Navigator.of(context).push(
-      HorizontalSwipeNavigation(
+      NavigationTransition(
           nextScreen: const OrdersScreen(),
           currentScreen: this,
           swipeDirection: 'right'),
@@ -45,11 +44,6 @@ class Profile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // final _screenWidth = MediaQuery.of(context).size.width;
-    // final _screenHeight = MediaQuery.of(context).size.height;
-    // print('widht : $_screenWidth');
-    // print('height : $_screenHeight');
-
     return Scaffold(
       appBar: AppBar(
         title: const Text('Profile Page'),
